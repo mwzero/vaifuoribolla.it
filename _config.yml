@@ -1,0 +1,4 @@
+name: "VaiFuoriBolla.it"
+permalink: /blog/:title/
+markdown: kramdown
+theme: minima # Usa un tema base predefinito di GitHub per impaginare il testo
