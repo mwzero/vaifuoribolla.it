@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | VaiFuoriBolla.it</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #111827; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9fafb; }
+        
+        /* Barra di navigazione per tornare alla Home */
+        .nav-back { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e5e7eb; margin-bottom: 30px; }
+        .logo-link { text-decoration: none; font-weight: bold; color: #111827; font-size: 1.1rem; }
+        .back-link { text-decoration: none; color: #2563eb; font-weight: 500; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+        
+        /* Stile dell'articolo */
+        h1 { font-size: 2.2rem; line-height: 1.2; color: #111827; margin-bottom: 5px; }
+        .meta { font-size: 0.85rem; color: #6b7280; margin-bottom: 30px; }
+        
+        /* Stile delle tabelle ereditate dal Markdown */
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.95rem; }
+        th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; }
+        th { background-color: #f3f4f6; font-weight: 600; }
+        blockquote { font-size: 1.1rem; font-style: italic; border-left: 4px solid #111827; margin: 20px 0; padding-left: 15px; color: #4b5563; }
+    </style>
+</head>
+<body>
+
+    <!-- La barra che risolve il tuo problema -->
+    <nav class="nav-back">
+        <a href="/" class="logo-link">📱 vai fuori bolla .it</a>
+        <a href="/" class="back-link">← Torna alla Home</a>
+    </nav>
+
+    <main>
+        <h1>{{ page.title }}</h1>
+        <div class="meta">Pubblicato il {{ page.date | date: "%d/%m/%Y" }} da {{ page.author }}</div>
+        
+        <article>
+            <!-- Questa riga dice a Jekyll di iniettare il testo del Markdown qui dentro -->
+            {{ content }}
+        </article>
+    </main>
+
+</body>
+</html>
