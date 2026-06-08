@@ -1,46 +1,215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | VaiFuoriBolla.it</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; color: #111827; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9fafb; }
-        
-        /* Barra di navigazione per tornare alla Home */
-        .nav-back { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #e5e7eb; margin-bottom: 30px; }
-        .logo-link { text-decoration: none; font-weight: bold; color: #111827; font-size: 1.1rem; }
-        .back-link { text-decoration: none; color: #2563eb; font-weight: 500; font-size: 0.9rem; }
-        .back-link:hover { text-decoration: underline; }
-        
-        /* Stile dell'articolo */
-        h1 { font-size: 2.2rem; line-height: 1.2; color: #111827; margin-bottom: 5px; }
-        .meta { font-size: 0.85rem; color: #6b7280; margin-bottom: 30px; }
-        
-        /* Stile delle tabelle ereditate dal Markdown */
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.95rem; }
-        th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; }
-        th { background-color: #f3f4f6; font-weight: 600; }
-        blockquote { font-size: 1.1rem; font-style: italic; border-left: 4px solid #111827; margin: 20px 0; padding-left: 15px; color: #4b5563; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }} — VaiFuoriBolla.it</title>
+  <meta name="description" content="{{ page.excerpt | default: page.description | strip_html | truncate: 160 }}" />
+  <link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.excerpt | default: page.description | strip_html | truncate: 160 }}" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}" />{% endif %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />
+  {% if page.author %}<meta property="article:author" content="{{ page.author }}" />{% endif %}
+  {% if page.category %}<meta property="article:section" content="{{ page.category }}" />{% endif %}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.excerpt | default: page.description | strip_html | truncate: 160 }}" />
+  {% if page.image %}<meta name="twitter:image" content="{{ page.image | absolute_url }}" />{% endif %}
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": {{ page.title | jsonify }},
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+    "author": { "@type": "Person", "name": {{ page.author | default: "Redazione VFB" | jsonify }} },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VaiFuoriBolla.it",
+      "url": "{{ site.url | default: '/' }}"
+    },
+    "mainEntityOfPage": {{ page.url | absolute_url | jsonify }}
+    {% if page.image %}, "image": [{{ page.image | absolute_url | jsonify }}]{% endif %}
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { color-scheme: light; }
+    html, body { background:#ffffff; color:#111827; }
+    .prose-vfb { font-size: 1.0625rem; line-height: 1.75; color:#1f2937; }
+    .prose-vfb h2 { font-size: 1.5rem; font-weight: 600; letter-spacing:-0.01em; margin: 2.25rem 0 0.75rem; color:#111827; }
+    .prose-vfb h3 { font-size: 1.2rem; font-weight: 600; margin: 1.75rem 0 0.5rem; color:#111827; }
+    .prose-vfb p  { margin: 0 0 1.1rem; }
+    .prose-vfb a  { color:#4f46e5; text-decoration: underline; text-underline-offset: 3px; }
+    .prose-vfb a:hover { color:#3730a3; }
+    .prose-vfb ul, .prose-vfb ol { margin: 0 0 1.1rem 1.25rem; }
+    .prose-vfb li { margin-bottom: 0.35rem; }
+    .prose-vfb blockquote { border-left: 3px solid #4f46e5; padding: 0.25rem 0 0.25rem 1rem; color:#374151; font-style: italic; margin: 1.25rem 0; background:#f9fafb; }
+    .prose-vfb code { background:#f3f4f6; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
+    .prose-vfb pre  { background:#0f172a; color:#e5e7eb; padding: 1rem; border-radius: 10px; overflow-x:auto; font-size: 0.875rem; }
+    .prose-vfb pre code { background: transparent; padding: 0; color: inherit; }
+    .prose-vfb img { border-radius: 10px; border:1px solid #e5e7eb; margin: 1.25rem 0; }
+    .prose-vfb table { width:100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.95rem; }
+    .prose-vfb th, .prose-vfb td { border:1px solid #e5e7eb; padding: 0.55rem 0.75rem; text-align:left; }
+    .prose-vfb th { background:#f9fafb; font-weight:600; }
+    .prose-vfb hr { border:0; border-top:1px solid #e5e7eb; margin: 2rem 0; }
+  </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- La barra che risolve il tuo problema -->
-    <nav class="nav-back">
-        <a href="/" class="logo-link">📱 vai fuori bolla .it</a>
-        <a href="/" class="back-link">← Torna alla Home</a>
-    </nav>
+  <!-- NAV -->
+  <header class="border-b border-neutral-200 bg-white">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+      <a href="{{ '/' | relative_url }}" class="flex items-center gap-2">
+        <span class="inline-block h-2.5 w-2.5 rounded-full bg-indigo-600"></span>
+        <span class="text-sm font-semibold tracking-tight">VaiFuoriBolla<span class="text-indigo-600">.it</span></span>
+      </a>
+      <nav class="hidden items-center gap-8 text-sm text-neutral-600 md:flex">
+        <a href="{{ '/#pilastri' | relative_url }}" class="hover:text-neutral-900">Pilastri</a>
+        <a href="{{ '/#articoli' | relative_url }}" class="hover:text-neutral-900">Analisi</a>
+        <a href="{{ '/#format' | relative_url }}" class="hover:text-neutral-900">Format</a>
+        <a href="{{ '/#footer' | relative_url }}" class="hover:text-neutral-900">Chi siamo</a>
+      </nav>
+      <a href="{{ '/#articoli' | relative_url }}"
+         class="hidden rounded-md bg-neutral-900 px-3.5 py-2 text-xs font-medium text-white hover:bg-neutral-800 md:inline-block">
+        Tutte le analisi
+      </a>
+    </div>
+  </header>
 
-    <main>
-        <h1>{{ page.title }}</h1>
-        <div class="meta">Pubblicato il {{ page.date | date: "%d/%m/%Y" }} da {{ page.author }}</div>
-        
-        <article>
-            <!-- Questa riga dice a Jekyll di iniettare il testo del Markdown qui dentro -->
-            {{ content }}
-        </article>
-    </main>
+  <!-- ARTICLE HEADER -->
+  <section class="border-b border-neutral-200 bg-neutral-50">
+    <div class="mx-auto max-w-3xl px-6 py-14 md:py-20">
+      <div class="mb-5 flex flex-wrap items-center gap-2 text-xs">
+        {% if page.category %}
+        <span class="rounded-full bg-indigo-50 px-2.5 py-1 font-medium text-indigo-700 ring-1 ring-indigo-100">
+          {{ page.category }}
+        </span>
+        {% endif %}
+        {% if page.verdict %}
+        <span class="rounded-full bg-neutral-900 px-2.5 py-1 font-medium text-white">
+          Verdetto: {{ page.verdict }}
+        </span>
+        {% endif %}
+        <span class="text-neutral-500">{{ page.date | date: "%-d %B %Y" }}</span>
+      </div>
+
+      <h1 class="text-balance text-3xl font-semibold leading-[1.1] tracking-tight text-neutral-900 md:text-5xl">
+        {{ page.title }}
+      </h1>
+
+      {% if page.excerpt or page.description %}
+      <p class="mt-5 text-pretty text-base leading-relaxed text-neutral-600 md:text-lg">
+        {{ page.excerpt | default: page.description | strip_html }}
+      </p>
+      {% endif %}
+
+      <div class="mt-8 flex items-center gap-3 text-sm text-neutral-700">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-xs font-semibold text-white">
+          {{ page.author | default: "VFB" | slice: 0, 2 | upcase }}
+        </span>
+        <div>
+          <p class="font-medium text-neutral-900">{{ page.author | default: "Redazione VFB" }}</p>
+          <p class="text-xs text-neutral-500">
+            {% if page.reading_time %}{{ page.reading_time }} min di lettura · {% endif %}Fonti istituzionali verificate
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE BODY -->
+  <main class="bg-white">
+    <article class="mx-auto max-w-3xl px-6 py-14 md:py-20">
+      {% if page.image %}
+      <figure class="mb-10">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.title }}" class="w-full" />
+        {% if page.image_caption %}
+        <figcaption class="mt-2 text-xs text-neutral-500">{{ page.image_caption }}</figcaption>
+        {% endif %}
+      </figure>
+      {% endif %}
+
+      <div class="prose-vfb">
+        {{ content }}
+      </div>
+
+      <!-- SOURCES -->
+      {% if page.sources %}
+      <section class="mt-14 rounded-2xl border border-neutral-200 bg-neutral-50 p-6 md:p-8">
+        <p class="text-xs font-medium uppercase tracking-widest text-indigo-600">Fonti</p>
+        <ol class="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-neutral-700">
+          {% for s in page.sources %}
+          <li>
+            {% if s.url %}<a href="{{ s.url }}" class="text-indigo-700 underline underline-offset-2 hover:text-indigo-900" rel="noopener nofollow">{{ s.name | default: s.url }}</a>{% else %}{{ s.name }}{% endif %}
+            {% if s.note %}<span class="text-neutral-500"> — {{ s.note }}</span>{% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      <!-- TAGS -->
+      {% if page.tags and page.tags.size > 0 %}
+      <div class="mt-10 flex flex-wrap gap-2">
+        {% for tag in page.tags %}
+        <span class="rounded-full border border-neutral-200 bg-white px-2.5 py-1 text-xs text-neutral-600">#{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- CORRECTIONS -->
+      <aside class="mt-10 rounded-xl border border-neutral-200 bg-white p-5 text-sm text-neutral-600">
+        <p><strong class="text-neutral-900">Hai trovato un errore?</strong> Le nostre analisi sono soggette a revisione pubblica. <a href="{{ '/#footer' | relative_url }}" class="text-indigo-700 underline underline-offset-2">Segnala una correzione</a>.</p>
+      </aside>
+    </article>
+  </main>
+
+  <!-- RELATED -->
+  {% assign related = site.posts | where_exp: "p", "p.url != page.url" | slice: 0, 3 %}
+  {% if related.size > 0 %}
+  <section class="border-t border-neutral-200 bg-neutral-50">
+    <div class="mx-auto max-w-6xl px-6 py-16">
+      <div class="mb-8">
+        <p class="text-xs font-medium uppercase tracking-widest text-indigo-600">Continua a leggere</p>
+        <h2 class="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">Altre analisi</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {% for post in related %}
+        <a href="{{ post.url | relative_url }}" class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-6 transition hover:border-neutral-900">
+          {% if post.category %}
+          <span class="self-start rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 group-hover:bg-indigo-50 group-hover:text-indigo-700">{{ post.category }}</span>
+          {% endif %}
+          <h3 class="mt-4 text-base font-semibold leading-snug tracking-tight text-neutral-900 group-hover:text-indigo-700">{{ post.title }}</h3>
+          <p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-neutral-600">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+          <div class="mt-5 flex items-center justify-between border-t border-neutral-100 pt-3 text-xs text-neutral-500">
+            <span>{{ post.author | default: "Redazione VFB" }}</span>
+            <span>{{ post.date | date: "%-d %b %Y" }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- FOOTER -->
+  <footer id="footer" class="border-t border-neutral-200 bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-10 text-xs text-neutral-500 md:flex md:items-center md:justify-between">
+      <p>© {{ site.time | date: "%Y" }} VaiFuoriBolla.it — Tutti i diritti riservati.</p>
+      <p>Made with rigor · No tracking · No ads</p>
+    </div>
+  </footer>
 
 </body>
 </html>
