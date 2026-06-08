@@ -1,56 +1,222 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VaiFuoriBolla.it | Dati, Retorica e Algoritmi</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding: 40px 0; border-bottom: 1px solid #eee; }
-        h1 { color: #111; margin-bottom: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { border: 1px solid #e5e7eb; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .category { font-size: 0.8rem; text-transform: uppercase; color: #3b82f6; font-weight: bold; }
-        .btn { display: inline-block; background: #111; color: #fff; padding: 10px 15px; text-decoration: none; border-radius: 4px; margin-top: 15px; font-size: 0.9rem; }
-        .btn:hover { background: #333; }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VaiFuoriBolla.it — Osservatorio indipendente di fact-checking</title>
+<meta name="description" content="Smontiamo la retorica dei video virali e analizziamo gli algoritmi che condizionano il tuo pensiero. Dati, fonti, trasparenza." />
+<meta property="og:title" content="VaiFuoriBolla.it — I dati oltre il Reel" />
+<meta property="og:description" content="Osservatorio indipendente di fact-checking e analisi dei media. Decoding Reel, Facts & Data, Algo Watch." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%234f46e5'/%3E%3C/svg%3E" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-0.125em}
+</style>
 </head>
-<body>
+<body class="min-h-screen bg-white text-neutral-900">
 
-    <header>
-        <h1>📱 vai fuori bolla .it</h1>
-        <p>I social ti mostrano il Reel. Noi ti mostriamo i dati.</p>
-    </header>
+<!-- SVG icon defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+    <symbol id="i-clap" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1 .3-2.2 1.4-2.5l13.7-3.8c1-.3 2.2.3 2.5 1.4Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2Z"/></symbol>
+    <symbol id="i-bar" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16V9"/><path d="M11 16v-4"/><path d="M15 16V6"/><path d="M19 16v-9"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-gh" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.42 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+  </defs>
+</svg>
 
-    <main>
-        <div class="grid">
-            <!-- Card 1: Vannacci -->
-            <div class="card">
-                <span class="category">Decoding Reel</span>
-                <h3>Vannacci e la retorica del rischio: cosa dicono i dati reali</h3>
-                <p>Analizziamo il frame "ho rischiato la vita" usato nei video per silenziare i giornalisti e bloccare il fact-checking.</p>
-                <a href="./blog/caso-vannacci/" class="btn">Leggi l'analisi</a>
-            </div>
+<!-- NAV -->
+<header class="border-b border-neutral-200">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+    <a href="/" class="flex items-center gap-2">
+      <span class="inline-block h-2.5 w-2.5 rounded-full bg-indigo-600"></span>
+      <span class="text-sm font-semibold tracking-tight">VaiFuoriBolla<span class="text-indigo-600">.it</span></span>
+    </a>
+    <nav class="hidden items-center gap-8 text-sm text-neutral-600 md:flex">
+      <a href="#pilastri" class="hover:text-neutral-900">Pilastri</a>
+      <a href="#articoli" class="hover:text-neutral-900">Analisi</a>
+      <a href="#format" class="hover:text-neutral-900">Format</a>
+      <a href="#footer" class="hover:text-neutral-900">Chi siamo</a>
+    </nav>
+    <a href="#articoli" class="hidden rounded-md bg-neutral-900 px-3.5 py-2 text-xs font-medium text-white hover:bg-neutral-800 md:inline-block">Leggi le analisi</a>
+  </div>
+</header>
 
-            <!-- Card 2: Schlein 
-            <div class="card">
-                <span class="category">Facts & Data</span>
-                <h3>La Sanità Pubblica è davvero al collasso? Il punto sulla spesa</h3>
-                <p>Un viaggio nei numeri del Fondo Sanitario Nazionale tra retorica politica dell'opposizione e dinamiche inflattive reali.</p>
-                <a href="./content/blog/2026-06-08-dati-sanita-schlein.md" class="btn">Metti alla prova i fatti</a>
-            </div>
-            -->
+<!-- HERO -->
+<section class="border-b border-neutral-200 bg-neutral-50">
+  <div class="mx-auto max-w-4xl px-6 py-20 text-center md:py-28">
+    <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs text-neutral-600">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-indigo-600"></span>
+      Osservatorio indipendente · fonti istituzionali verificate
+    </div>
+    <h1 class="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-neutral-900 md:text-6xl">
+      I social ti mostrano il Reel. <span class="text-indigo-600">Noi ti mostriamo i dati.</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-neutral-600 md:text-lg">
+      L'osservatorio indipendente che smonta la retorica dei video virali e analizza gli algoritmi che condizionano il tuo pensiero.
+    </p>
+    <form onsubmit="event.preventDefault()" class="mx-auto mt-10 flex max-w-2xl items-center gap-2 rounded-xl border border-neutral-200 bg-white p-2 shadow-sm focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-100">
+      <svg class="icon ml-2 text-[20px] shrink-0 text-neutral-400"><use href="#i-search"/></svg>
+      <input type="text" placeholder="Incolla il link di un video o digita il nome di un personaggio (es. Vannacci)..." class="w-full bg-transparent py-2 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none" />
+      <button type="submit" class="hidden rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 sm:inline-block">Analizza</button>
+    </form>
+    <p class="mt-3 text-xs text-neutral-500">Ricerca interna su archivio analisi · Privacy garantita</p>
+  </div>
+</section>
 
-            <!-- Card 3: Guru 
-            <div class="card">
-                <span class="category">Algo Watch</span>
-                <h3>Il mito del ventenne milionario: dentro il Survivorship Bias</h3>
-                <p>Perché il tuo feed di YouTube è pieno di guru della finanza digitale e cosa dicono le statistiche di fallimento delle startup.</p>
-                <a href="./content/blog/2026-06-08-guru-finanza-social.md" class="btn">Smonta il bias</a>
-            </div>
-            -->
+<!-- PILLARS -->
+<section id="pilastri" class="border-b border-neutral-200">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="mb-12">
+      <p class="text-xs font-medium uppercase tracking-widest text-indigo-600">I tre filtri</p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Come leggiamo l'informazione</h2>
+    </div>
+    <div class="grid gap-4 md:grid-cols-3">
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-7 transition hover:border-neutral-900">
+        <div class="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900 group-hover:bg-indigo-600 group-hover:text-white"><svg class="icon text-[20px]"><use href="#i-clap"/></svg></div>
+        <h3 class="text-lg font-semibold tracking-tight">Decoding Reel</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-600">Analisi della retorica, dei frame politici e degli scudi retorici usati nelle clip brevi.</p>
+        <span class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-indigo-600">Esplora <svg class="icon text-[16px]"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-7 transition hover:border-neutral-900">
+        <div class="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900 group-hover:bg-indigo-600 group-hover:text-white"><svg class="icon text-[20px]"><use href="#i-bar"/></svg></div>
+        <h3 class="text-lg font-semibold tracking-tight">Facts &amp; Data</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-600">Verifiche numeriche e statistiche oggettive basate su fonti istituzionali (ISTAT, INAIL, OCSE).</p>
+        <span class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-indigo-600">Esplora <svg class="icon text-[16px]"><use href="#i-arrow"/></svg></span>
+      </article>
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-7 transition hover:border-neutral-900">
+        <div class="mb-6 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-900 group-hover:bg-indigo-600 group-hover:text-white"><svg class="icon text-[20px]"><use href="#i-eye"/></svg></div>
+        <h3 class="text-lg font-semibold tracking-tight">Algo Watch</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-600">Come funzionano gli algoritmi di raccomandazione e come creano le bolle d'opinione (eco-chambers).</p>
+        <span class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-indigo-600">Esplora <svg class="icon text-[16px]"><use href="#i-arrow"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section id="format" class="border-b border-neutral-200 bg-neutral-50">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="mb-10 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-widest text-indigo-600">Il nostro format</p>
+      <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Il Reel dice / I Fatti dicono</h2>
+      <p class="mt-3 text-neutral-600">Un confronto simmetrico tra la narrazione virale e i dati ufficiali. Sempre con fonte verificabile.</p>
+    </div>
+    <div class="grid overflow-hidden rounded-2xl border border-neutral-200 md:grid-cols-2">
+      <div class="bg-neutral-900 p-8 text-neutral-100 md:p-10">
+        <div class="mb-6 flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-400">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-red-400"></span> Il Reel Dice 📱
         </div>
-    </main>
+        <blockquote class="text-xl font-medium italic leading-snug text-white md:text-2xl">
+          “Ho rischiato la vita in prima linea per il Paese, mentre altri stavano comodi dietro una scrivania.”
+        </blockquote>
+        <div class="mt-8 flex items-center gap-3 text-xs text-neutral-400">
+          <svg class="icon text-[16px] text-red-400"><use href="#i-shield"/></svg>
+          Frame emotivo · clip 28&quot; · 2,4M views
+        </div>
+      </div>
+      <div class="border-t border-neutral-200 bg-white p-8 md:border-l md:border-t-0 md:p-10">
+        <div class="mb-6 flex items-center gap-2 text-xs uppercase tracking-widest text-indigo-600">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-indigo-600"></span> La Realtà dei Fatti 📊
+        </div>
+        <p class="text-base leading-relaxed text-neutral-800">
+          Secondo i dati ufficiali del Ministero della Difesa e INAIL, nel comparto Difesa si registra una media di <strong class="text-neutral-900">4–6 decessi/anno</strong>, in larga parte legati a incidenti in addestramento, non al combattimento attivo. Il rischio statistico è inferiore a quello di numerose categorie civili (edilizia, agricoltura, trasporti).
+        </p>
+        <div class="mt-8 grid grid-cols-3 gap-4 border-t border-neutral-200 pt-6">
+          <div><p class="text-xl font-semibold tracking-tight text-indigo-700 md:text-2xl">4–6</p><p class="mt-1 text-[11px] uppercase tracking-wider text-neutral-500">decessi/anno</p></div>
+          <div><p class="text-xl font-semibold tracking-tight text-indigo-700 md:text-2xl">&lt; 0,01%</p><p class="mt-1 text-[11px] uppercase tracking-wider text-neutral-500">tasso comparto</p></div>
+          <div><p class="text-xl font-semibold tracking-tight text-indigo-700 md:text-2xl">3</p><p class="mt-1 text-[11px] uppercase tracking-wider text-neutral-500">fonti incrociate</p></div>
+        </div>
+        <div class="mt-8 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 ring-1 ring-indigo-100">
+          <svg class="icon text-[14px]"><use href="#i-check"/></svg> Verdetto: Frame Fuorviante
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ARTICLES -->
+<section id="articoli" class="border-b border-neutral-200">
+  <div class="mx-auto max-w-6xl px-6 py-20">
+    <div class="mb-12 flex items-end justify-between">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-widest text-indigo-600">Ultime analisi</p>
+        <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Dal blog redazionale</h2>
+      </div>
+      <a href="#" class="hidden text-sm font-medium text-neutral-900 hover:text-indigo-600 md:inline-flex md:items-center md:gap-1">Archivio completo <svg class="icon text-[16px]"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-6 transition hover:border-neutral-900">
+        <span class="self-start rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 group-hover:bg-indigo-50 group-hover:text-indigo-700">Decoding Reel</span>
+        <h3 class="mt-4 text-lg font-semibold leading-snug tracking-tight text-neutral-900 group-hover:text-indigo-700">Vannacci e la retorica del rischio: cosa dicono i dati reali dell'Esercito?</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">Il frame “ho rischiato la vita in prima linea” a confronto con i dati ufficiali: una media di 4-6 decessi all'anno nel comparto Difesa, in larga parte non legati al combattimento.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500"><span>Redazione VFB</span><span>5 Giugno 2026</span></div>
+      </article>
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-6 transition hover:border-neutral-900">
+        <span class="self-start rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 group-hover:bg-indigo-50 group-hover:text-indigo-700">Facts &amp; Data</span>
+        <h3 class="mt-4 text-lg font-semibold leading-snug tracking-tight text-neutral-900 group-hover:text-indigo-700">La Sanità Pubblica è davvero al collasso? Il punto sulla spesa sul PIL</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">Il Fondo Sanitario Nazionale cresce in valore nominale ma viene eroso dall'inflazione: la spesa reale pro-capite si contrae mentre la domanda di cure aumenta.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500"><span>M. Greco</span><span>2 Giugno 2026</span></div>
+      </article>
+      <article class="group flex flex-col rounded-xl border border-neutral-200 bg-white p-6 transition hover:border-neutral-900">
+        <span class="self-start rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 group-hover:bg-indigo-50 group-hover:text-indigo-700">Algo Watch</span>
+        <h3 class="mt-4 text-lg font-semibold leading-snug tracking-tight text-neutral-900 group-hover:text-indigo-700">Il mito del ventenne milionario con l'AI: dentro il Survivorship Bias</h3>
+        <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-600">Gli algoritmi premiano le storie di successo e nascondono il tasso di mortalità reale delle startup digitali under-25. Cosa non ti viene mostrato nel feed.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-neutral-100 pt-4 text-xs text-neutral-500"><span>L. Bianchi</span><span>29 Maggio 2026</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" class="bg-white">
+  <div class="mx-auto max-w-6xl px-6 py-14">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block h-2.5 w-2.5 rounded-full bg-indigo-600"></span>
+          <span class="text-sm font-semibold tracking-tight">VaiFuoriBolla<span class="text-indigo-600">.it</span></span>
+        </div>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-neutral-600">Osservatorio indipendente di fact-checking e analisi dei media. Nessun finanziamento pubblico, nessuna affiliazione politica.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-6 text-sm">
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-500">Naviga</p>
+          <ul class="space-y-2 text-neutral-700">
+            <li><a href="#" class="hover:text-indigo-600">Chi Siamo</a></li>
+            <li><a href="#" class="hover:text-indigo-600">Archivio</a></li>
+            <li><a href="#" class="hover:text-indigo-600">Segnala un Reel</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-500">Trasparenza</p>
+          <ul class="space-y-2 text-neutral-700">
+            <li><a href="#" class="hover:text-indigo-600">Metodologia</a></li>
+            <li><a href="#" class="hover:text-indigo-600">Fonti</a></li>
+            <li><a href="#" class="hover:text-indigo-600">Correzioni</a></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-500">Open source</p>
+        <a href="https://github.com" class="inline-flex items-center gap-2 rounded-md border border-neutral-200 px-3 py-2 text-sm text-neutral-800 hover:border-neutral-900">
+          <svg class="icon text-[16px]"><use href="#i-gh"/></svg> Repository GitHub
+        </a>
+        <p class="mt-4 text-xs leading-relaxed text-neutral-500">Tutte le verifiche sono basate su fonti istituzionali pubbliche (ISTAT, INAIL, OCSE, Eurostat, Banca d'Italia) e linkate integralmente in ogni articolo.</p>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col items-start justify-between gap-3 border-t border-neutral-200 pt-6 text-xs text-neutral-500 md:flex-row md:items-center">
+      <p>© <span id="y"></span> VaiFuoriBolla.it — Tutti i diritti riservati.</p>
+      <p>Made with rigor · No tracking · No ads</p>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
