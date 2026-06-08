@@ -1,4 +1,4 @@
-\---
+ ---
 
 title: "Vannacci e la retorica del rischio: cosa dicono i dati reali"
 
@@ -8,13 +8,13 @@ author: "La Redazione"
 
 category: "Decoding Reel"
 
-\---
+ ---
 
-> \*\*La Pillola (TL;DR):\*\* Analizziamo il frame "ho rischiato la vita" usato dal Generale Vannacci nei Reel di YouTube per schermare le critiche, confrontandolo con il curriculum reale e le statistiche storiche sulla sicurezza sul lavoro in Italia.
+>  * *La Pillola (TL;DR): * * Analizziamo il frame "ho rischiato la vita" usato dal Generale Vannacci nei Reel di YouTube per schermare le critiche, confrontandolo con il curriculum reale e le statistiche storiche sulla sicurezza sul lavoro in Italia.
 
 
 
-\## Il Confronto Diretto
+ ## Il Confronto Diretto
 
 | Il Reel Dice 📱 | La Realtà dei Fatti 📊 |
 
@@ -24,9 +24,9 @@ category: "Decoding Reel"
 
 
 
-\## L'Analisi
+ ## L'Analisi
 
-Nelle clip virali, la formula del "rischio della vita" viene utilizzata come uno \*scudo retorico\*. Quando l'intervistatore solleva critiche sui contenuti del libro, il piano della conversazione viene spostato dal merito delle tesi alla legittimità morale dell'interlocutore.
+Nelle clip virali, la formula del "rischio della vita" viene utilizzata come uno  *scudo retorico *. Quando l'intervistatore solleva critiche sui contenuti del libro, il piano della conversazione viene spostato dal merito delle tesi alla legittimità morale dell'interlocutore.
 
 
 
